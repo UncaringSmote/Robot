@@ -76,8 +76,12 @@ class Path:
         else:
             turn_brn = self.initial_brn + 135
         self.points.append(distance.distance(kilometers=1 / 1000).destination(self.points[-1], turn_brn))
-        self.points.append(distance.distance(kilometers=2 / 1000).destination(self.points[-1], turn_brn-45))
-        self.points.append(distance.distance(kilometers=1 / 1000).destination(self.points[-1], turn_brn-180))
+        if self.grid_size_meters % 2 == 1:
+            self.points.append(distance.distance(kilometers=2 / 1000).destination(self.points[-1], turn_brn-45))
+            self.points.append(distance.distance(kilometers=1 / 1000).destination(self.points[-1], turn_brn-180))
+        else:
+            self.points.append(distance.distance(kilometers=2 / 1000).destination(self.points[-1], turn_brn+45))
+            self.points.append(distance.distance(kilometers=1 / 1000).destination(self.points[-1], turn_brn+180))
     def printPoints(self):
         print("latitude,longitude,name")
         for p, k in enumerate(self.points):

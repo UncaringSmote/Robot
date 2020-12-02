@@ -6,4 +6,3 @@ from path import Path
 initial_lat_lon=(30.39245978916698, -84.28468018371238)
 initial_brn = 0
 Path(initial_lat_lon,initial_brn)
-
