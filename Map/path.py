@@ -17,6 +17,9 @@ class Path:
         self.printPoints()
         self.savePoints()
 
+    def get_points(self):
+        return self.points
+
     def AddFirstPass(self):
         self.calculateFrontAndRight()
         self.line_spacing = self.spacingDistance(self.initial_point, self.side, self.grid_size_meters)
