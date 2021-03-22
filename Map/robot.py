@@ -9,7 +9,7 @@ class Robot:
         pass
 
     def connect(self):
-        self.vehicle = connect('replaceme', wait_ready=True)
+        self.vehicle = connect('udp:127.0.0.1:14757', wait_ready=True)
 
     def start_mission(self, delay=3):
         self.connect()
