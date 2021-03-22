@@ -4,8 +4,8 @@ from robot import Robot
 
 class RPi:
     def __init__(self):
-        self.load_waypoints_button = Button(2,bounce_time=5)
-        self.start_mission_button = Button(3,bounce_time=5)
+        self.load_waypoints_button = Button(27,bounce_time=5)
+        self.start_mission_button = Button(17,bounce_time=5)
         self.load_waypoints_button.when_pressed = self.load_waypoints
         self.start_mission_button.when_pressed = self.start_mission
         self.robot = Robot()
