@@ -37,15 +37,15 @@ class Path:
         self.create_pass()
 
     def calculate_front_and_right(self):
-        self.front = distance.distance(kilometers=self.grid_size_meters / 1000).destination(self.initial_point,
+        self.front = distance.distance(kilometers=self.grid_size_meters / 1000.).destination(self.initial_point,
                                                                                             self.initial_brn)
-        self.side = distance.distance(kilometers=self.grid_size_meters / 1000).destination(self.initial_point,
+        self.side = distance.distance(kilometers=self.grid_size_meters / 1000.).destination(self.initial_point,
                                                                                            self.initial_brn + 90)
 
     def calculate_front_and_left(self):
-        self.front = distance.distance(kilometers=self.grid_size_meters / 1000).destination(self.initial_point,
+        self.front = distance.distance(kilometers=self.grid_size_meters / 1000.).destination(self.initial_point,
                                                                                             self.initial_brn)
-        self.side = distance.distance(kilometers=(self.grid_size_meters) / 1000).destination(self.initial_point,
+        self.side = distance.distance(kilometers=(self.grid_size_meters) / 1000.).destination(self.initial_point,
                                                                                              self.initial_brn - 90)
 
     def spacing_distance(self, start_point, end_point, divisions):
@@ -68,7 +68,7 @@ class Path:
                 self.add_transition_points(self.initial_brn + 180 * (i % 2))
 
     def add_transition_points(self, brn):
-        self.points.append(distance.distance(kilometers=1 / 1000).destination(self.points[-1], brn))
+        self.points.append(distance.distance(kilometers=1 / 1000.).destination(self.points[-1], brn))
 
     def add_turn_around_point(self):
         self.end_point = self.points[-1]
@@ -76,13 +76,13 @@ class Path:
             turn_brn = self.initial_brn + 45
         else:
             turn_brn = self.initial_brn + 135
-        self.points.append(distance.distance(kilometers=1 / 1000).destination(self.points[-1], turn_brn))
+        self.points.append(distance.distance(kilometers=1 / 1000.).destination(self.points[-1], turn_brn))
         if self.grid_size_meters % 2 == 1:
-            self.points.append(distance.distance(kilometers=2 / 1000).destination(self.points[-1], turn_brn - 45))
-            self.points.append(distance.distance(kilometers=1 / 1000).destination(self.points[-1], turn_brn - 180))
+            self.points.append(distance.distance(kilometers=2 / 1000.).destination(self.points[-1], turn_brn - 45))
+            self.points.append(distance.distance(kilometers=1 / 1000.).destination(self.points[-1], turn_brn - 180))
         else:
-            self.points.append(distance.distance(kilometers=2 / 1000).destination(self.points[-1], turn_brn + 45))
-            self.points.append(distance.distance(kilometers=1 / 1000).destination(self.points[-1], turn_brn + 180))
+            self.points.append(distance.distance(kilometers=2 / 1000.).destination(self.points[-1], turn_brn + 45))
+            self.points.append(distance.distance(kilometers=1 / 1000.).destination(self.points[-1], turn_brn + 180))
 
     def print_points(self):
         print("latitude,longitude,name")
