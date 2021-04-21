@@ -1,6 +1,7 @@
 from dronekit import connect, VehicleMode, Command
 import time
 from path import Path
+from simplepath import SimplePath
 from pymavlink import mavutil
 
 class Robot:
@@ -42,7 +43,7 @@ class Robot:
         lat = self.vehicle.location.global_relative_frame.lat
         lon = self.vehicle.location.global_relative_frame.lon
         brn = self.vehicle.heading
-        path = Path((lat,lon), brn)
+        path = SimplePath((lat,lon), brn)
         points = path.get_points()
         msg = self.vehicle.message_factory.command_long_encode(
             0, 0,    # target system, target component
