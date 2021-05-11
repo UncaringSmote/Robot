@@ -14,6 +14,7 @@ class Robot:
 
     def start_mission(self, delay=3):
         self.connect()
+
         time.sleep(delay)
         if self.vehicle.mode.name == 'AUTO':
             self.vehicle.mode = VehicleMode("MANUAL")
@@ -53,7 +54,7 @@ class Robot:
             0,          # param 2,
             0,          # param 3
             0,          # param 4,
-            lat, lon, 100)    # param 5 ~ 7 lat,lon,alt
+            lat, lon, 0)    # param 5 ~ 7 lat,lon,alt
         self.vehicle.send_mavlink(msg)
         self.vehicle.flush()
 
@@ -66,7 +67,10 @@ class Robot:
         for point in points:
             cmds.add(
                 Command(0, 0, 0, mavutil.mavlink.MAV_FRAME_GLOBAL_RELATIVE_ALT, mavutil.mavlink.MAV_CMD_NAV_WAYPOINT, 0,0,
-                        0, 0, 0, 0, point[0], point[1], 0))
+                        0, 0, 0, 0, point.point[0], point.point[1], 0))
+        cmds.add(
+            Command(0, 0, 0, mavutil.mavlink.MAV_FRAME_GLOBAL_RELATIVE_ALT, mavutil.mavlink.MAV_CMD_NAV_LOITER_UNLIM, 0,0,
+                    0, 0, 0, 0, 0, 0, 0))
         cmds.upload()
 
         self.close_connection()

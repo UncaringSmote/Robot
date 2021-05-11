@@ -1,5 +1,5 @@
 from geopy import distance, Point
-
+from waypoint import Waypoint
 class SimplePath:
     box_distance_meters = 20.0
     start_distance_meters = 10.0
@@ -23,7 +23,7 @@ class SimplePath:
     def calculate_next_point(self,offset,angle):
         self.current_point = distance.distance(kilometers=offset / 1000.).destination(self.current_point,
                                                                                          self.initial_brn+angle)
-        self.points.append(self.current_point)
+        self.points.append(Waypoint(self.current_point,Waypoint.LINE))
 
 
     def spacing_distance(self, start_point, end_point, divisions):
@@ -34,7 +34,7 @@ class SimplePath:
     def print_points(self):
         print("latitude,longitude,name")
         for p, k in enumerate(self.points):
-            print(str(k[0]) + "," + str(k[1]) + "," + str(p))
+            print(str(k.point[0]) + "," + str(k.point[1]) + "," + str(k.waypoint_type) + "," + str(p))
 
 if __name__ == '__main__':
     blah = SimplePath(Point(30.518341,-84.249066),45)
